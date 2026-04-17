@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analyzer</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3b82f6, #ec4899);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .box {
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 16px;
+            width: 400px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #ddd;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.3);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .positive {
+            color: #4ade80;
+        }
+
+        .negative {
+            color: #f87171;
+        }
+
+        .neutral {
+            color: #e5e7eb;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+    <h2>Movie Review Sentiment Analyzer</h2>
+
+    <form method="POST">
+        <input type="text" name="text" placeholder="What do you think about Stranger Things? " required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+        <div class="result">
+            {% if result == "positive" %}
+                <p class="positive">😊 Positive</p>
+            {% elif result == "negative" %}
+                <p class="negative">😡 Negative</p>
+            {% else %}
+                <p class="neutral">😐 Neutral</p>
+            {% endif %}
+
+            <p>Confidence: {{ confidence }}%</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
